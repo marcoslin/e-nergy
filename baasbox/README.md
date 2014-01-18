@@ -1,4 +1,5 @@
 # Setup for baasbox-0.7.2
+0. Download baasbox via http://www.baasbox.com/download-page/
 1. unzip
 2. chmod 755 start
 3. start
