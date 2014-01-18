@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>index Page</title>
+		<link href="css/style.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&language=it&region=IT"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</head>
+	<body>
+		<div class="mapContainer">
+			<div class="map" id="map"></div>
+			<div id="search-panel">
+				<input type="text" name="address" id="address" placeholder="Via, città">
+				<input type="submit" value="Go go go!" onclick="codeAddress();">
+			</div>
+			<div class="results"></div>
+		</div>
+	</body>
+</html>
