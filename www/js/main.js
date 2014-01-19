@@ -2,7 +2,7 @@ var geocoder = null,
 	map = null,
 	loc = {},
 	latlng = null,
-	server = "http://172.16.21.14:9000",
+	server = "http://172.16.21.70:9000",
 	markersArray = [],
 	station_details = {},
 	markerImage = {
@@ -31,6 +31,12 @@ maps = {
 		latlng = new google.maps.LatLng(41.903245, 12.479502);
 		maps.drawMap(latlng);
 		maps.getLocation();
+		$(document).ready(function(){
+			/*
+$('#datetimepicker').datetimepicker({
+			});
+*/
+		})
 	},
 	getLocation: function() {
 		if (navigator.geolocation) {
@@ -93,7 +99,6 @@ maps = {
 									var station_class = "public";
 									if (typeof station_details[item["cu-code"]] != "undefined" && station_details[item["cu-code"]]["station_class"] == "private") {
 										station_class = "private";
-										console.log(station_details[item["cu-code"]]);
 									}
 									switch (item["cu-state"]) {
 									case "ACTIVE":
@@ -130,8 +135,59 @@ maps = {
 										if (infowindow) {
 											infowindow.close();
 										}
-										var _streetViewImage = "http://maps.googleapis.com/maps/api/streetview?size=204x50&location=" + item["latitudine"] + "," + item["longitudine"] + "&sensor=false";
-										var _content = "<div class=\"energyWindow gm-style-iw\">" + "<div class=\"gm-iw\">" + "<div class=\"gm-title\">" + item["enel-name"] + "</div>" + "<div class=\"gm-basicinfo\">" + "<div class=\"gm-addr\">" + "<a href=\"#\" onclick=\"return false;\" style=\"color:#000000;cursor:default;\">" + item["region"] + "</a>" + "</div>" + "<div class=\"gm-addr\">" + "<a href=\"#\" onclick=\"return false;\" style=\"color:#000000;cursor:default;\">" + item["city"] + "</a>" + "</div>" + "<div class=\"gm-addr\">" + "<a href=\"#\" onclick=\"return false;\" style=\"color:#000000;cursor:default;\">" + item["cu-code"] + "</a>" + "</div>" + "<div class=\"gm-website\">" + item["road"] + "</div>" + "<div class=\"gm-photos\" style=\"margin-top:5px;\">" + "<div class=\"gm-wsv\" onclick=\"maps.setPanorama('" + i + "'); return false;\">" + "<img src=\"" + _streetViewImage + "\" width=\"204\" height=\"50\">" + "<label class=\"gm-sv-label\">Street View</label>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>";
+										var _streetViewImage = "http://maps.googleapis.com/maps/api/streetview?size=250x50&location=" + item["latitudine"] + "," + item["longitudine"] + "&sensor=false";
+										
+										var _rates;
+										var _notes;
+										var _reservation;
+										
+										
+										if(typeof station_details[item["cu-code"]] != "undefined" && typeof station_details[item["cu-code"]]["rates"] != "undefined"){
+											_rates = '<div class="gm-basicinfo">'+
+													    '<div class="gm-addr"> Parking: '+ station_details[item["cu-code"]]["rates"]["parking"] + '</div>' +
+													    '<div class="gm-addr"> Eletricity: '+ station_details[item["cu-code"]]["rates"]["eletricity"] + '</div>' +
+													 '</div>';
+										}else{
+											_rates = '';
+										}
+										
+										if(typeof station_details[item["cu-code"]] != "undefined" && typeof station_details[item["cu-code"]]["note"] != "undefined"){
+											_notes = '<div class="gm-basicinfo">'+
+													    '<div class="gm-addr"> <b>Note:</b> ' + station_details[item["cu-code"]]["note"] + ' </div>' +
+													 '</div>';
+										}else{
+											_notes = '';
+										}
+										
+										if(typeof station_details[item["cu-code"]] != "undefined" && typeof station_details[item["cu-code"]]["reservation"] != "undefined"){
+											_reservation = '<button class="btn btn-xs" disabled="disabled" type="submit">Reserved</button>';
+										}else{
+											if(station_class == "public"){
+												_reservation = '<button class="btn btn-success btn-xs" type="submit">Reserve!</button>';
+											}else{
+												_reservation = '<div class="btn-group">  <button type="button" class="btn btn-primary btn-xs">Duration</button>  <button type="button" class="btn-xs btn btn-primary dropdown-toggle" data-toggle="dropdown">    <span class="caret"></span>    <span class="sr-only">Toggle Dropdown</span>  </button>  <ul class="dropdown-menu" role="menu">    <li><a href="#">1h</a></li>    <li><a href="#">2h</a></li>    <li><a href="#">3h</a></li> <li><a href="#">4h</a></li>  </ul></div>'+
+												'<div class="btn-group btn-xs">  <button type="button" class="btn btn-primary btn-xs">kW</button>  <button type="button" class="btn-xs btn btn-primary dropdown-toggle" data-toggle="dropdown">    <span class="caret"></span>    <span class="sr-only">Toggle Dropdown</span>  </button>  <ul class="dropdown-menu" role="menu">    <li><a href="#">0.5kW</a></li>    <li><a href="#">1.0kW</a></li>    <li><a href="#">2.0kW</a></li> <li><a href="#">3.0kW</a></li>  </ul></div>'+
+												'<button class="btn btn-success btn-xs" type="submit">Reserve!</button>';
+											}
+										}
+										
+										var _content = '<div class="energyWindow gm-style-iw">'+
+														  '<div class="gm-iw">'+
+														     '<div class="gm-title">'+ item["enel-name"] + ' / ' + item["cu-code"] + "</div>" +
+														  '</div>'+
+														  '<div class="gm-basicinfo">'+
+														     '<div class="gm-addr">'+ item["road"] + ", " + item["city"] + ", " + item["post-code"] + '</div>' +
+														  '</div>'+
+														  _reservation+
+														  _rates +
+														  _notes +
+														  '<div class="gm-photos" style="margin-top:5px;">' +
+														     '<div class="gm-wsv" onclick="maps.setPanorama(\'' + i + '\'); return false;">' + 
+														        '<img src="' + _streetViewImage + '" width="250" height="50">' +
+														     '</div>' + 
+														  '</div>' + 
+														  '<input type="button"'
+														'</div>';
 										infowindow = new google.maps.InfoWindow({
 											content: _content
 										});

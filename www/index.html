@@ -23,10 +23,15 @@
 				  <div class="form-group">
 				    <input type="text" name="city" class="form-control col3" id="city" placeholder="Città">
 				  </div>
-				   <span class="input-group-btn">
-				    <button class="btn btn-default col3" type="submit" onclick="maps.codeAddress(); return false;">Go!</button>
-				  </span>
-	        </form>
+				  <div class="form-group">
+					<div class='input-group datetime' id='datetimepicker'>
+					  <input type='text' class="form-control" placeholder="19/01/2014 12:00" />
+					  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+					  </span>
+					</div>
+				  </div>
+				  <button class="btn btn-default col3" type="submit" onclick="maps.codeAddress(); return false;">Go!</button>
+			</form>
 	    </div>
 	
 	    <div class="results">
@@ -36,5 +41,6 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
 </body>
 </html>
