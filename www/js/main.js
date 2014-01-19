@@ -32,10 +32,7 @@ maps = {
 		maps.drawMap(latlng);
 		maps.getLocation();
 		$(document).ready(function(){
-			/*
-$('#datetimepicker').datetimepicker({
-			});
-*/
+			
 		})
 	},
 	getLocation: function() {
@@ -165,8 +162,8 @@ $('#datetimepicker').datetimepicker({
 											if(station_class == "public"){
 												_reservation = '<button class="btn btn-success btn-xs" type="submit">Reserve!</button>';
 											}else{
-												_reservation = '<div class="btn-group">  <button type="button" class="btn btn-primary btn-xs">Duration</button>  <button type="button" class="btn-xs btn btn-primary dropdown-toggle" data-toggle="dropdown">    <span class="caret"></span>    <span class="sr-only">Toggle Dropdown</span>  </button>  <ul class="dropdown-menu" role="menu">    <li><a href="#">1h</a></li>    <li><a href="#">2h</a></li>    <li><a href="#">3h</a></li> <li><a href="#">4h</a></li>  </ul></div>'+
-												'<div class="btn-group btn-xs">  <button type="button" class="btn btn-primary btn-xs">kW</button>  <button type="button" class="btn-xs btn btn-primary dropdown-toggle" data-toggle="dropdown">    <span class="caret"></span>    <span class="sr-only">Toggle Dropdown</span>  </button>  <ul class="dropdown-menu" role="menu">    <li><a href="#">0.5kW</a></li>    <li><a href="#">1.0kW</a></li>    <li><a href="#">2.0kW</a></li> <li><a href="#">3.0kW</a></li>  </ul></div>'+
+												_reservation = '<div class="btn-group">  <button type="button" class="btn-xs btn btn-primary dropdown-toggle" data-toggle="dropdown">  Duration   <span class="caret"></span>    <span class="sr-only">Toggle Dropdown</span> </button>  <ul class="dropdown-menu" role="menu">    <li><a href="#">1h</a></li>    <li><a href="#">2h</a></li>    <li><a href="#">3h</a></li> <li><a href="#">4h</a></li>  </ul></div>'+
+												'<div class="btn-group btn-xs">   <button type="button" class="btn-xs btn btn-primary dropdown-toggle" data-toggle="dropdown">kW  <span class="caret"></span>    <span class="sr-only">Toggle Dropdown</span>  </button>  <ul class="dropdown-menu" role="menu">    <li><a href="#">0.5kW</a></li>    <li><a href="#">1.0kW</a></li>    <li><a href="#">2.0kW</a></li> <li><a href="#">3.0kW</a></li>  </ul></div>'+
 												'<button class="btn btn-success btn-xs" type="submit">Reserve!</button>';
 											}
 										}
@@ -192,6 +189,10 @@ $('#datetimepicker').datetimepicker({
 											content: _content
 										});
 										infowindow.open(map, marker);
+										$(".dropdown-menu li a").click(function(){
+  var selText = $(this).text();
+  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+});
 									});
 									markersArray.push(marker);
 								})
