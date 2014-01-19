@@ -209,7 +209,6 @@ maps = {
 			var address = a;
 		} else {
 			var address = document.getElementById('address').value;
-			address = address + ", " + city;
 		}
 		geocoder.geocode({
 			'address': address
