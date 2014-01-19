@@ -99,7 +99,11 @@ maps = {
 									}
 									switch (item["cu-state"]) {
 									case "ACTIVE":
-										state = markerImage[station_class]["green"];
+										if(typeof station_details[item["cu-code"]] != "undefined" && typeof station_details[item["cu-code"]]["reservation"] != "undefined"){
+											state = markerImage[station_class]["red"];
+										}else{
+											state = markerImage[station_class]["green"];
+										}
 										break
 									case "MAINTENANCE":
 										state = markerImage[station_class]["red"];
