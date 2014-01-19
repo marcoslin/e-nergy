@@ -7,7 +7,7 @@ import httplib, urllib
 http_hd = {
     "Authorization": "Basic YWRtaW46YWRtaW4=",
     "x-baasbox-appcode": "1234567890",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json;charset=utf-8"
 }
 
 
@@ -31,8 +31,10 @@ for line in fh:
     row_count = 0
     for header in headers:
         entry_value = rows[row_count].strip()
+        
+        
         try:
-            entry_value = entry_value.encode('ascii', 'ignore')
+            entry_value = entry_value.decode('utf-8', 'replace')
         except:
             print "### Error for %s with value %s" % (header, entry_value)
             entry_value = ""
