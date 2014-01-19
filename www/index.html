@@ -1,19 +1,40 @@
-<html>
-	<head>
-		<title>index Page</title>
-		<link href="css/style.css" type="text/css" rel="stylesheet">
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&language=it&region=IT"></script>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
-	</head>
-	<body>
-		<div class="mapContainer">
-			<div class="map" id="map"></div>
-			<div id="search-panel">
-				<input type="text" name="address" id="address" placeholder="Via, città">
-				<input type="submit" value="Go go go!" onclick="maps.codeAddress();">
-			</div>
-			<div class="results"></div>
-		</div>
-	</body>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<title>index Page</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/style.css" type="text/css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="mapContainer">
+	    <div class="map" id="map"></div>
+	    <div class="logo"></div>
+	    
+	    <div id="search-panel" class="center-block">
+	    	<form role="form" class="form-inline">
+	        	<div class="form-group">
+				  <input type="text" name="address" class="form-control col3" id="address" placeholder="Via">
+	        	</div>
+				  <div class="form-group">
+				    <input type="text" name="city" class="form-control col3" id="city" placeholder="Città">
+				  </div>
+				   <span class="input-group-btn">
+				    <button class="btn btn-default col3" type="submit" onclick="maps.codeAddress(); return false;">Go!</button>
+				  </span>
+	        </form>
+	    </div>
+	
+	    <div class="results">
+	    </div>
+	</div>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&language=it&region=IT"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
 </html>

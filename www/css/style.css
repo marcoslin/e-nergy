@@ -1,4 +1,4 @@
-html, body, .map {
+html, body, .map, .mapContainer {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
@@ -9,20 +9,41 @@ html, body, .map {
 	position: relative;
 }
 
-#search-panel {
+.mapContainer .logo {
 	z-index: 1;
+	position: absolute;
+	bottom: 15px;
+	right: 10px;
+	background-image: url("/images/logo.png");
+	width: 197px;
+	height: 41px;
+}
+
+#search-panel {
+	z-index: 3;
 	position: absolute;
 	top: 10px;
 	left: 100px;
 	background-color: #ffffff;
 	border: 1px solid #6b6b6b;
 	box-shadow: 0px 2px 3px black;
-	border-radius: 15px;
 	padding: 5px;
+	width: 200px;
+	height: 142px;
+	position: absolute;
+	left: 100px;
+	top: 10px;
+	
 }
 
-#search-panel input[type='text'] {
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px solid black;
+.results {
+	position: absolute;
+	z-index: 1;
+	top: 10px;
+	left: 400px;
+}
+
+.energyWindow {
+	width: 210px;
+	height: 175px;
 }
