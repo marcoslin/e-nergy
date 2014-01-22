@@ -245,3 +245,17 @@ a {
 .cf {
   zoom:1;
 }
+
+/* Personalization */
+#social {
+    text-align: center;
+}
+
+#social a {
+    text-decoration:none; 
+}
+
+#social .icon {
+    width: 30px;
+    height: 30px;
+}
